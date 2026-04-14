@@ -1,0 +1,45 @@
+@import '../../../styles/variables';
+
+.toolbar {
+  height: $toolbar-height;
+  background-color: $color-surface;
+  border-bottom: 1px solid $color-border;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-lg;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.brandMark {
+  display: block;
+  flex-shrink: 0;
+}
+
+.appName {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.userName {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+}

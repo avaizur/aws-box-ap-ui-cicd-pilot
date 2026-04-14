@@ -1,0 +1,66 @@
+@import '../../styles/variables';
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // Desktop: 3 columns
+  gap: 16px; // 12-16px field spacing for inline filters
+  
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(2, 1fr); // Tablet: 2 columns
+  }
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr; // Mobile: 1 column stacked
+  }
+}
+
+.filterCard {
+  padding: 20px; // 16-20px padding
+  border-radius: 12px; // 12px radius
+  border: 1px solid #e5e7eb; // 1px border
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); // Subtle shadow optional
+}
+
+.tableCard {
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-lg;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+  }
+}
+
+.loading {
+  padding: $spacing-xl;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; // 16px between fields (modal)
+}
+
+.formActions {
+  display: flex;
+  gap: 12px; // 12px button spacing
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+

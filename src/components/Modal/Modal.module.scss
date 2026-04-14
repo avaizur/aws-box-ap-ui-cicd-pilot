@@ -1,0 +1,78 @@
+@import '../../styles/variables';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4); // Dark translucent backdrop
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal {
+  background-color: white;
+  border: none;
+  border-radius: 12px; // 12-16px radius
+  max-width: 720px; // 640-760px desktop
+  width: 90%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); // Subtle shadow/elevation
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px; // 20-24px padding
+  border-bottom: 1px solid #e5e7eb; // 1px light border divider
+}
+
+.title {
+  font-size: 18px; // 18-20px
+  font-weight: 700; // bold
+  margin: 0;
+  color: #111827; // near-black
+}
+
+.closeButton {
+  font-size: 20px;
+  line-height: 1;
+  color: #6b7280; // muted
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background-color: #f3f4f6; // subtle hover background
+    color: #111827;
+  }
+}
+
+.content {
+  padding: 24px; // 24px padding
+  overflow-y: auto;
+  flex: 1;
+}
+
+.footer {
+  padding: 20px 24px; // 16-20px padding
+  border-top: 1px solid #e5e7eb; // 1px light border divider
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px; // 12px button spacing
+}
+

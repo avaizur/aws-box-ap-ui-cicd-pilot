@@ -1,0 +1,90 @@
+@import '../../styles/variables';
+
+// Sidebar menu icons use 18px; landing cards use 3× for emphasis.
+$sidebar-icon-size: 18px;
+$landing-card-icon-size: $sidebar-icon-size * 3;
+$landing-card-radius: 12px;
+$landing-icon-radius: 8px;
+
+.cardsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: $spacing-xl * 3;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  flex: 1 1 300px;
+  max-width: 420px;
+}
+
+.landingCard {
+  height: 100%;
+  min-height: 150px;
+  border-radius: $landing-card-radius;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: $color-primary;
+  }
+}
+
+.cardInner {
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: $spacing-md;
+  min-height: 0;
+}
+
+.cardIconLandscape {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  width: $landing-card-icon-size * 1.6;
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-surface;
+  border: 0px solid $color-border;
+  border-radius: $landing-icon-radius;
+
+  svg {
+    width: $landing-card-icon-size;
+    height: $landing-card-icon-size;
+    max-width: 75%;
+    max-height: 75%;
+    color: $color-primary;
+  }
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  flex: 1;
+  min-width: 0;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.cardDescription {
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: 1.5;
+  color: $color-text-secondary;
+}

@@ -1,0 +1,29 @@
+@import '../../../styles/variables';
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainContent {
+  margin-left: $sidebar-width;
+  margin-top: $toolbar-height;
+  min-height: calc(100vh - #{$toolbar-height});
+  background-color: $color-background;
+}
+
+.usableBody {
+  padding: $page-padding-vertical $page-padding-horizontal;
+  
+  > * + * {
+    margin-top: $page-spacing;
+  }
+}
+
+.pageTitle {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: 0 0 $spacing-lg 0;
+}

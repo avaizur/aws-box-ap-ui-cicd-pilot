@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+
+.card {
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $border-radius; // Square corners
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+
+  &.noPadding {
+    .content {
+      padding: 0;
+    }
+  }
+}
+
+.titleBox {
+  background-color: $color-background;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-md $spacing-lg;
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.content {
+  padding: $spacing-lg;
+}

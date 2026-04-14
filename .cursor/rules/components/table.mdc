@@ -1,0 +1,41 @@
+---
+alwaysApply: true
+---
+
+
+Table should use the latest version of tanstack table component inside the 
+The file table-defintion.js shows how it is configured with the tableDefintion json object.
+
+
+Create a table component Table
+Place it in a sub folder components/table
+
+
+Each different column type should have it's own cell renderer component in folder renderer.
+    e.g. DateCellRenderer
+         CurrencyCellRenderer
+When no type is specified it should use the DefaultCellRenderer
+
+
+The data state is declared outside Table and passed in
+
+const [tableData, setTableData] = useState(loadedData)
+
+<Table tableDefintion={tableDefintion} data={tableData} setData={setTableData}/>
+
+When selectable is true then each row should have a checkbox on the left
+The parent component of the table can get a list of any selected rows (checkbox clicked).
+
+
+Column Sorting
+--------------
+
+When a column in the tableDefintion object has sortable: 'true' it means this column is sortable
+If a column is set as sortable, the column title should have a bootstrap arrow icon next to it
+It will be up or down depending on if it sorting ascending or descending
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.loginContainer {
+  @include flex-center;
+  min-height: 100vh;
+  background-color: $color-background;
+  padding: $spacing-lg;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  min-width: 400px;
+}
+
+.errorMessage {
+  color: $color-error;
+  font-size: $font-size-sm;
+  padding: $spacing-sm;
+  background-color: rgba(211, 47, 47, 0.1);
+  border: 1px solid $color-error;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  font-size: $font-size-sm;
+}
+
+
+
+
+
+
+
+
+
+

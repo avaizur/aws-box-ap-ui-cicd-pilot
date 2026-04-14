@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+
+.messagePanel {
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  border-radius: 8px;
+  
+  &.error {
+    background-color: #F2DEDE;
+    border: 1px solid #E0B1B8;
+    color: #A94442;
+  }
+  
+  &.warning {
+    background-color: #FCF8E3;
+    border: 1px solid #E6DBA7;
+    color: #8A6D3B;
+  }
+  
+  &.success {
+    background-color: #DFF0D8;
+    border: 1px solid #B2D8A7;
+    color: #3C763D;
+  }
+}
+
+.mainMessage {
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-md;
+}
+
+.errorList {
+  margin: 0;
+  padding-left: $spacing-lg;
+  list-style-type: disc;
+}
+
+.errorItem {
+  margin-bottom: $spacing-xs;
+  font-size: $font-size-sm;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+

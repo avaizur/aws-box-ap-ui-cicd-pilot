@@ -1,0 +1,53 @@
+@import '../../../styles/variables';
+
+.sidebar {
+  width: $sidebar-width;
+  background-color: $color-surface;
+  border-right: 1px solid $color-border;
+  position: fixed;
+  top: $toolbar-height;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.menu {
+  list-style: none;
+  padding: $spacing-md 0;
+  margin: 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  color: $color-text-primary;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  border-left: 3px solid transparent;
+
+  &:hover {
+    background-color: $color-background;
+  }
+
+  &.active {
+    background-color: rgba(25, 118, 210, 0.1);
+    border-left-color: $color-primary;
+    color: $color-primary;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: $color-text-secondary;
+}
+
+.label {
+  display: block;
+  white-space: nowrap;
+}

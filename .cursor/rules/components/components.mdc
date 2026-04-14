@@ -1,0 +1,38 @@
+---
+alwaysApply: true
+---
+
+### Cards
+For the card component in must not have any rounded corners, they need to be square
+The card title should be in it's own title box
+
+### Forms
+Required fields should have a red asterix next to their label
+Invalid fields should be highligted in red
+
+### Form Fields
+Height of input fields should be 30px
+
+
+### Tabs
+
+<Tabs value={activeTab} onChange={setActiveTab}>
+  <Tabs.List>
+    <Tabs.Tab value='details'>Details</Tabs.Tab>
+  </Tabs.List>
+
+  <Tabs.Panels>
+    <Tabs.Panel value='details'>Details content…</Tabs.Panel>
+  </Tabs.Panels>
+</Tabs>
+
+Tabs – root, manages state & context
+Tabs.List – wrapper for the tab buttons (renders a <div role='tablist'>)
+Tabs.Tab – the clickable “button” (renders <button role='tab'>)
+Tabs.Panels – wrapper for all panels
+Tabs.Panel – content area (renders <div role='tabpanel'>)
+
+I also want the tab components driven by a json object as well as jsx
+
+### Tables
+The Table component should follow the design in rules/images/table.png

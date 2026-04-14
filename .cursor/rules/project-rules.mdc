@@ -1,0 +1,124 @@
+---
+alwaysApply: true
+---
+
+########## RULES
+
+Use Javascript not typescript
+
+### FOLDERS
+This is the folder structure of the React App
+
+src/
+    components/          Common, generic reusable components used across multiple pages
+    constants/           Files containing constant values and enums
+    services/            Service files that make calls to REST APIs
+    utils/               Utils files containing reusable util functions, e.g. dateUtils.js
+    fetch.service.jsx    Special file with reusable HTTP helpers (get, post, put, delete, etc.)
+    pages/               Contains subfolders for each feature/page and their supporting components
+        if there are any module specific components they should go in pages/{module}/components
+    styles/              Global SCSS (tokens, layout, base styles)
+
+### COMPONENTS
+
+- `src/components/` is for **generic, reusable components** (e.g. Button, Card, Modal, Layout wrappers).
+- Feature-specific components that only belong to one page/module should live under that page’s folder, e.g.:
+  - `src/pages/users/components/UserTable.jsx`  
+
+
+### STYLES
+
+- Global SCSS lives under `src/styles/`:
+  - `src/styles/_variables.scss` for shared tokens (colors, spacing, typography, radii, etc.)
+  - `src/styles/_mixins.scss` for shared mixins (breakpoints, flex helpers, etc.)
+  - `src/styles/_layout.scss` for shared layout utilities (page padding, toolbar, sidebar, etc.)
+  - `src/styles/main.scss` imports the partials and sets base styles; this is imported once in the app entry point.
+- Each React component should have its **own SCSS module file** next to it:
+  - `Button.jsx` → `Button.module.scss`
+  - `UserPage.jsx` → `UserPage.module.scss`
+
+
+###MODULES
+
+When creating a new module (e.g. user module), follow this structure:
+Service
+Create a service file in src/services/:
+user.service.jsx
+All HTTP calls must use the reusable functions from fetch.service.jsx (no raw fetch or axios in components):
+
+// user.service.jsx
+import { get, post, put, del } from './fetch.service';
+
+export function fetchUsers(params) {
+  return get('/api/users', { params });
+}
+
+export function createUser(payload) {
+  return post('/api/users', payload);
+}
+
+
+Pages
+
+Create a folder in src/pages/, e.g. src/pages/users/.
+Inside that folder create the main page file, e.g. UserPage.jsx.
+Page file should:
+Use PageLayout for consistent layout.
+Delegate complex UI to smaller components under src/pages/users/components/ if needed.
+
+
+
+### DOMAIN and MODELS
+To simply code and maintain seperation of concerns
+Any business logic should be in a domain object
+UserDomain.js
+And where apropriate if the data is not simple their should be a model object, e.g. UserModel
+UserModel may combine data from multiple APIs
+Using the model in combination with a domain object simplify usage and simplify the UI code
+
+
+
+# APP RULES (LAYOUT)
+
+All pages share a common application layout:
+
+The image src/files/page-padding.png show how the UB is laid out
+- A top toolbar which is 64px high.
+- A sidebar on the left that is 200px wide.
+- The remaining area is the usable body (UB) of the page.
+
+The usable body (UB) layout:
+
+The image src/files/page-padding.png shows how the UB is laid out
+- Outer left and right padding: 48px.
+- Outer top and bottom padding: 24px.
+- Any direct child objects inside the UB (e.g. cards, sections) have **24px vertical spacing** between them.
+
+Implementation rules:
+
+- Do **not** reproduce this layout manually in each page.
+- Create and use a shared layout component and/or SCSS utilities:
+
+Example:
+
+- Create `src/components/layout/PageLayout.jsx` and `PageLayout.module.scss`.
+- `PageLayout` is responsible for:
+  - Rendering the toolbar and sidebar.
+  - Applying UB padding (48px/24px) and vertical spacing (24px between children).
+- All pages should use `PageLayout`:
+
+```jsx
+// Example usage in a page
+import PageLayout from '../../components/layout/PageLayout';
+
+function UserPage() {
+  return (
+    <PageLayout title='Users'>
+      {/* Direct children of PageLayout body get 24px spacing */}
+      <UserSummaryCard />
+      <UserTable />
+    </PageLayout>
+  );
+}
+
+export default UserPage;

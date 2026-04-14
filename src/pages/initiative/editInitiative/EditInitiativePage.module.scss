@@ -1,0 +1,76 @@
+@import '../../../styles/variables';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1px solid $color-divider;
+  background-color: $color-surface;
+  box-shadow: $shadow-sm;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md 0 0 0;
+  border-top: 1px solid $color-border;
+  background-color: $color-surface;
+}
+
+.pageFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: $spacing-md;
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  // border-top: 1px solid $color-divider;
+  background-color: $color-surface;
+  // box-shadow: $shadow-sm;
+}
+
+.errorRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-md;
+  color: $color-error;
+}
+
+.checkboxWrapper {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+}
+
+.partnersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1px solid $color-divider;
+  background-color: $color-surface;
+}
+
+.partnersTitle {
+  margin: 0;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.newButtonCaret {
+  margin-left: $spacing-xs;
+  font-size: $font-size-sm;
+  line-height: 1;
+}
+

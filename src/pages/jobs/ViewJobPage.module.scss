@@ -1,0 +1,61 @@
+@import '../../styles/variables';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.formActions {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: flex-end;
+  margin-top: $spacing-md;
+}
+
+.kvGrid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.kvRow {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: $spacing-md;
+  padding: $spacing-sm 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.kvRow:last-child {
+  border-bottom: none;
+}
+
+.kvKey {
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+.kvValue {
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+}
+
+.truncate {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.errorRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-md;
+  color: $color-error;
+}
+
+

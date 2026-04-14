@@ -1,0 +1,34 @@
+---
+alwaysApply: true
+---
+The table action menu can be added to an action column on a table
+
+TableActionMenu is the component name
+
+It can be added to the actions in a tableDefinition object
+
+TableActionMenu can have a list of menu items
+Each menu item declares the jsx and the event code when it is clicked
+A menu item also has a visible option and enabled option
+Use the bootstrap icon menu-button-wide
+
+Clicking the icon causes the menu to appear
+It is a popup menu
+The menu is a single-column vertical list of actions
+
+
+    actions: [
+      {
+        render: (row) => (
+          <button
+            className={`${tableStyles.actionButton} ${tableStyles.edit}`}
+            onClick={() => handleEdit(row)}
+            title="Edit"
+          >
+            ✏️
+          </button>
+        ),
+      }
+    ],
+
+

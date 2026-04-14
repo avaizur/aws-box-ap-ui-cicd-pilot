@@ -1,0 +1,9 @@
+---
+alwaysApply: true
+---
+
+All HTTP calls must use the reusable functions from fetch.service.jsx (no raw fetch or axios in components):
+
+templates/example.service.js is a simple template for building services
+
+

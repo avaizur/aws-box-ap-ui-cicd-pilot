@@ -1,0 +1,263 @@
+@import '../../styles/variables';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 0;
+  background-color: $color-background;
+  color: $color-text-primary;
+}
+
+.loadingWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+}
+
+.loadBanner {
+  padding: $spacing-sm $spacing-md;
+  background-color: rgba(237, 108, 2, 0.12);
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+  border-bottom: 1px solid $color-border;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: 10px $spacing-md;
+  border-bottom: 1px solid $color-border;
+  background-color: $color-surface;
+  overflow-x: auto;
+  flex: 0 0 auto;
+}
+
+.tabChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid $color-border;
+  padding: 6px $spacing-sm;
+  background: $color-surface;
+  white-space: nowrap;
+}
+
+.tabChipActive {
+  border-color: $color-primary;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.15);
+}
+
+.tabNameBtn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: $color-text-primary;
+  font-weight: $font-weight-semibold;
+  padding: 2px 4px;
+  font-size: $font-size-sm;
+}
+
+.tabActionBtn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: $color-text-secondary;
+  padding: 2px 4px;
+  font-size: $font-size-xs;
+}
+
+.tabActionBtn:hover {
+  color: $color-primary;
+}
+
+.deleteBtn:hover {
+  color: $color-error;
+}
+
+.addTabBtn {
+  border: 1px dashed $color-primary;
+  color: $color-primary;
+  background: rgba(25, 118, 210, 0.06);
+  padding: 7px 10px;
+  cursor: pointer;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-sm;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.panel {
+  border: 1px solid $color-border;
+  background: $color-surface;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $shadow-sm;
+}
+
+.panelTitle {
+  margin: 0;
+  padding: 10px $spacing-md;
+  border-bottom: 1px solid $color-border;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+}
+
+.panelContent {
+  padding: $spacing-md;
+  overflow: auto;
+  flex: 1;
+}
+
+.fieldList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: $spacing-md;
+}
+
+.fieldItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm;
+  border: 1px solid $color-border;
+  cursor: pointer;
+  background: $color-surface;
+}
+
+.fieldItemActive {
+  border-color: $color-primary;
+  background: rgba(25, 118, 210, 0.06);
+}
+
+.fieldRemove {
+  border: 0;
+  background: transparent;
+  color: $color-error;
+  cursor: pointer;
+  font-size: $font-size-xs;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid $color-border;
+  margin: $spacing-md 0;
+}
+
+.checks {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.checkLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: $font-size-sm;
+}
+
+.choicesBlock {
+  border: 1px solid $color-border;
+  padding: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.choiceRow {
+  display: flex;
+  gap: $spacing-sm;
+  margin-bottom: 6px;
+  align-items: center;
+}
+
+.choiceRow input {
+  flex: 1;
+}
+
+.choiceRemove {
+  border: 0;
+  background: rgba(211, 47, 47, 0.1);
+  color: $color-error;
+  border-radius: $border-radius;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: $font-size-xs;
+}
+
+.addFieldBtn {
+  margin-bottom: $spacing-md;
+}
+
+.previewTitle {
+  margin: 0 0 $spacing-md 0;
+  font-size: $font-size-lg;
+  color: $color-success;
+  font-weight: $font-weight-semibold;
+}
+
+.previewRow {
+  margin-bottom: 10px;
+  padding: $spacing-sm;
+  border: 1px solid transparent;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.previewRowActive {
+  border-color: $color-primary;
+  background: rgba(25, 118, 210, 0.06);
+}
+
+.previewForm label {
+  display: block;
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  margin-bottom: 4px;
+  font-weight: $font-weight-semibold;
+}
+
+.previewForm input,
+.previewForm textarea,
+.previewForm select {
+  width: 100%;
+  border: 1px solid $color-border;
+  padding: 8px;
+  font-size: $font-size-sm;
+  min-height: $input-height;
+  font-family: inherit;
+}
+
+.previewForm textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.requiredMark {
+  color: $color-error;
+  font-weight: $font-weight-bold;
+}
+
+.emptyNote {
+  color: $color-text-secondary;
+  font-style: italic;
+  font-size: $font-size-sm;
+}
+
+.editorSection {
+  margin-top: $spacing-md;
+}

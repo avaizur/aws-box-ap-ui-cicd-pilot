@@ -1,0 +1,64 @@
+@import '../../styles/variables';
+
+.menuWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.menuButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #6b7280;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-size: 16px;
+  padding: 0;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #111827;
+  }
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  box-shadow: $shadow-md;
+  z-index: 1000;
+  min-width: 150px;
+  padding: $spacing-xs 0;
+}
+
+.menuItem {
+  padding: $spacing-sm $spacing-md;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+
+  &:hover:not(.disabled) {
+    background-color: $color-background;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+

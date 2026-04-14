@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+
+.tabs {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  gap: $spacing-sm;
+  border-bottom: 1px solid $color-border;
+  padding: 0;
+}
+
+.tab {
+  border: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  background: $color-surface;
+  color: $color-text-primary;
+  height: 30px;
+  padding: 0 $spacing-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  margin-bottom: -1px;
+}
+
+.tab:hover {
+  background: $color-background;
+}
+
+.active {
+  border-color: $color-border;
+  border-bottom-color: $color-surface;
+  background: $color-tab-active;
+  color: $color-surface;
+  position: relative;
+  z-index: 1;
+}
+
+.panels {
+  padding-top: $spacing-lg;
+}
+
+.panel {
+  width: 100%;
+}
+
+

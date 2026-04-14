@@ -1,0 +1,65 @@
+@import '../../styles/variables';
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filterCard {
+  padding: 20px;
+  border-radius: $border-radius;
+  border: 1px solid $color-border;
+  background-color: $color-surface;
+  box-shadow: $shadow-sm;
+}
+
+.tableCard {
+  padding: 0;
+  border-radius: $border-radius;
+  border: 1px solid $color-border;
+  box-shadow: $shadow-sm;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $color-divider;
+
+  h3 {
+    margin: 0;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+  }
+}
+
+.loading {
+  padding: $spacing-xl;
+  text-align: center;
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: $spacing-sm;
+}

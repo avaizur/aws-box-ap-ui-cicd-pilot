@@ -1,0 +1,131 @@
+# Table Look & Feel Specification (Source of Truth)
+
+## Overall Style
+- Modern SaaS admin dashboard
+- Clean, light, spacious, neutral
+- White surfaces on light grey background
+- Subtle borders, soft shadows, rounded corners
+- No visual clutter, strong alignment, generous spacing
+
+## Table Container
+- Table must be wrapped in a **Card**
+- Card styles:
+  - Background: white
+  - Border: 1px solid light neutral
+  - Border radius: 12px
+  - Padding: 0 (table handles internal spacing)
+  - Optional subtle shadow (very light, low elevation)
+
+## Table Layout
+- Full-width table
+- Fixed header row
+- Clear column alignment
+- No vertical grid lines
+- Very subtle horizontal row dividers
+
+## Header Row
+- Background: very light neutral (slightly darker than page background)
+- Text:
+  - Font size: 13–14px
+  - Font weight: 600
+  - Color: muted dark grey
+  - Upper/lowercase: normal (not all caps)
+- Height: ~48px
+- Padding: 16px horizontal
+- Checkbox column aligned left with consistent spacing
+
+## Body Rows
+- Row height: ~56px
+- Padding:
+  - 16px horizontal
+  - Vertically centered content
+- Text:
+  - Primary text: 14–15px, medium weight
+  - Secondary text (email, meta): muted color
+- Hover state:
+  - Very subtle background highlight
+  - No borders added on hover
+
+## Row Dividers
+- Horizontal separators only
+- Color: very light neutral
+- Thickness: 1px
+- No zebra striping
+
+## Checkbox Column
+- Small, minimal checkbox
+- Aligned vertically center
+- Slight left padding from table edge
+- Checkbox should not dominate visually
+
+## Status Badge / Pill
+- Rounded pill shape
+- Soft background color
+- No hard borders
+- Padding: small horizontal + vertical
+- Font size: ~12–13px
+- Font weight: 500
+
+Status color rules:
+- Active: soft green background, darker green text
+- Pending: soft yellow background, darker yellow/orange text
+- Inactive: soft grey background, muted text
+
+## Numeric Columns (e.g. Balance)
+- Right-aligned
+- Use tabular/monospaced numerals if available
+- Currency symbol included
+- Same font size as body text
+- Slightly higher contrast than secondary text
+
+## Actions Column
+- Right-aligned
+- Uses **icon buttons only**
+- Icons:
+  - Edit
+  - Delete
+  - Overflow (three dots)
+- Icon buttons:
+  - Neutral color by default
+  - Subtle hover background
+  - No visible borders
+- No text labels in the table row
+- Tooltips on hover for accessibility
+
+## Toolbar / Table Header Actions
+- Appears above the table inside the card
+- Contains:
+  - Primary or secondary action button (e.g. “Export to CSV”)
+- Button style:
+  - Rounded corners
+  - Clear primary color
+  - Icon + label
+- Toolbar aligned to the right
+
+## Footer / Pagination
+- Appears below the table inside the card
+- Contains:
+  - Rows per page selector
+  - Item count (e.g. “1–5 of 8”)
+  - Page navigation arrows
+- Footer text:
+  - Small, muted
+- Pagination controls minimal and unobtrusive
+
+## Spacing & Density Rules
+- Prioritise readability over density
+- Avoid tight or cramped rows
+- Consistent spacing across all tables
+- Tables should feel “calm” and easy to scan
+
+## Do Not
+- Do not use heavy borders
+- Do not use bright or saturated colors
+- Do not use text links for row actions
+- Do not add unnecessary icons
+- Do not use zebra striping
+
+## Cursor Instruction (recommended)
+Apply the table look and feel defined in this file.
+Do not change functionality or data.
+Only adjust layout, spacing, typography, colors, and component structure to match the spec exactly.

@@ -1,0 +1,31 @@
+@import '../../styles/variables';
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.formActions {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: flex-end;
+  margin-top: $spacing-md;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,160 @@
+@import '../../styles/variables';
+
+.imageManager {
+  margin-top: $spacing-lg;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: 0 0 $spacing-md 0;
+}
+
+.dropZone {
+  border: 2px dashed $color-border;
+  border-radius: 6px;
+  padding: $spacing-xl;
+  text-align: center;
+  background-color: $color-background;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: $spacing-lg;
+
+  &:hover {
+    border-color: $color-primary;
+    background-color: rgba($color-primary, 0.05);
+  }
+
+  &.dragOver {
+    border-color: $color-primary;
+    background-color: rgba($color-primary, 0.1);
+  }
+}
+
+.dropZoneText {
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+}
+
+.fileInput {
+  display: none;
+}
+
+.thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+.thumbnailWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thumbnail {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: $color-surface;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover .thumbnailOverlay {
+    opacity: 1;
+  }
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.loading {
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+}
+
+.thumbnailOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.thumbnailButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-surface;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  transition: all 0.15s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.editButton {
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &.deleteButton {
+    &:hover {
+      color: $color-error;
+    }
+  }
+}
+
+.thumbnailLabel {
+  margin-top: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  text-align: center;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.editModalContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.fullImage {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+}
+
+.modalFooter {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: flex-end;
+}
+

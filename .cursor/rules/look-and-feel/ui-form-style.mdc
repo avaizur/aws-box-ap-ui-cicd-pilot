@@ -1,0 +1,203 @@
+# Form Look & Feel Specification (Source of Truth)
+
+Applies to:
+- Inline filter/search forms above tables (e.g. Search + Created From/To)
+- Modal “Edit/Create” forms (e.g. Edit Customer)
+- Any standard CRUD form in the app
+
+Goal:
+- Modern SaaS admin feel: clean, airy, consistent spacing, clear hierarchy
+- Subtle surfaces + borders, strong alignment, accessible focus/validation states
+- Match the table styling: white card surfaces, light separators, rounded corners, calm UI
+
+---
+
+## Design Tokens (use as CSS variables or theme tokens)
+
+- Page background: light neutral (e.g. #F6F8FB)
+- Surface/card background: #FFFFFF
+- Text: near-black (e.g. #111827)
+- Muted text: grey (e.g. #6B7280)
+- Border: light neutral (e.g. #E5E7EB)
+- Primary: blue (e.g. #2563EB)
+- Focus ring: primary at low opacity
+- Error: red (soft background + clear text)
+- Success: green (soft background + clear text)
+
+---
+
+## Global Form Rules
+
+### Layout & Spacing
+- Use a consistent vertical rhythm:
+  - Field group spacing: 16px between fields (modal), 12–16px (inline filters)
+  - Label-to-control spacing: 6–8px
+  - Section padding inside cards/modals: 24px
+- Align labels and inputs to a grid; avoid uneven widths.
+- Prefer two-column layouts when space allows, but never cram fields.
+- Use a max content width for long forms inside modals:
+  - Inputs can be full-width; the modal controls the overall width.
+
+### Labels
+- Labels sit above inputs.
+- Font size: 12–13px; font weight: 600
+- Color: slightly muted (not black)
+- Required indicator: red asterisk (*) next to label text.
+- Helper text (optional): 12px muted, placed below the control.
+
+### Inputs (text, email, phone, select, date)
+- Height: 40px (standard), 44px (optional for touch)
+- Border radius: 8px
+- Border: 1px solid Border token
+- Background: white
+- Padding: 10–12px horizontal
+- Placeholder text: muted and clearly distinguishable from typed text
+- Focus state:
+  - Border becomes Primary
+  - Add a subtle focus ring/glow (low opacity)
+- Disabled state:
+  - Light neutral background
+  - Muted text
+  - Cursor indicates disabled
+- Avoid harsh shadows on inputs; keep them flat with clean borders.
+
+### Textarea
+- Same border + radius as inputs
+- Minimum height: 120px
+- Vertical resize allowed (optional), horizontal resize disabled
+
+### Validation States
+- Invalid:
+  - Border: error color
+  - Show error text below field (12px), short and clear
+- Valid (optional):
+  - Border: success or keep neutral (prefer minimal “valid” chrome)
+- Do not show validation errors until the user has interacted (touched) or attempted submit.
+
+---
+
+## Inline Filter/Search Form (Above Table)
+
+### Container
+- Must be inside a Card-style surface:
+  - White background
+  - 1px border
+  - 12px radius
+  - 16–20px padding
+  - Subtle shadow optional (very light)
+- The filter card should visually connect with the table card (same styling family).
+
+### Layout
+- Use a responsive grid:
+  - Desktop: 3 columns (Search, Created From, Created To)
+  - Tablet: 2 columns
+  - Mobile: 1 column stacked
+- Field widths should be consistent; date fields match input height and styling.
+
+### Search Input
+- Search placeholder: “Search by name, email, or phone…”
+- Optional leading icon (magnifying glass) inside the input (subtle, muted).
+- If a clear button exists, show only when there is text.
+
+### Date Inputs
+- Use the same input styling for date pickers.
+- Calendar icon aligned right inside the control; muted by default.
+- Ensure keyboard typing works (dd/mm/yyyy) if supported.
+
+### Optional Actions (recommended)
+- Add a compact “Clear filters” text button or secondary button on the right (optional).
+- Any action buttons should be aligned right and not dominate the row.
+
+---
+
+## Modal Edit/Create Form (e.g. Edit Customer)
+
+### Modal Container
+- Modal:
+  - White background
+  - Radius: 12–16px
+  - Subtle shadow/elevation
+  - Width: 640–760px desktop; responsive down to mobile
+- Overlay:
+  - Dark translucent backdrop (subtle), clicking outside optionally closes.
+
+### Modal Header
+- Title left: “Edit Customer” / “New Customer”
+  - Font size: 18–20px
+  - Font weight: 700
+- Close (X) icon button right:
+  - Neutral, with subtle hover background
+- Header padding: 20–24px
+- Divider line under header: 1px light border
+
+### Modal Body
+- Padding: 24px
+- Single column layout by default (full width fields)
+- Group related fields with extra top margin and optional subheading (rare—keep simple).
+
+### Modal Footer
+- Divider line above footer: 1px light border
+- Padding: 16–20px
+- Buttons aligned right:
+  - Secondary button: “Cancel”
+  - Primary button: “Save”
+- Button spacing: 12px gap
+- Primary button should be visually dominant (solid Primary).
+- Secondary button should be subtle (outline or soft surface).
+
+---
+
+## Buttons
+
+### Primary Button
+- Background: Primary
+- Text: white
+- Radius: 8–10px
+- Height: 40px
+- Padding: 0 16px
+- Hover: slightly darker
+- Disabled: reduced opacity + no hover
+
+### Secondary Button
+- Background: white (or very light neutral)
+- Border: 1px solid Border
+- Text: normal text color
+- Hover: very light neutral background
+
+### Icon Buttons (inside inputs/modals)
+- No border
+- Subtle hover background (light neutral)
+- Tooltips for accessibility
+
+---
+
+## Typography
+- Body text: 14–15px, normal weight
+- Labels: 12–13px, semibold
+- Helper/error: 12px
+- Keep line length comfortable; avoid dense blocks.
+
+---
+
+## Accessibility & Interaction
+- All controls must be keyboard accessible.
+- Visible focus indicators required (do not remove outlines without replacement).
+- Use aria-labels for icon-only buttons (close, clear, calendar).
+
+---
+
+## Do Not
+- Do not use cramped spacing or mismatched input heights.
+- Do not use heavy borders, harsh shadows, or overly saturated colors.
+- Do not mix label placements (always above inputs).
+- Do not use text links as primary form actions.
+
+---
+
+## Cursor Instruction (recommended)
+Apply the form look and feel defined in this file to:
+1) Inline filter/search forms above tables
+2) Modal edit/create forms
+
+Do not change business logic or API calls.
+Only update layout, spacing, typography, colors/tokens, and component composition to match the spec exactly.
