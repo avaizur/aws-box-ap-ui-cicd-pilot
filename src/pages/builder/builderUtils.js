@@ -1,4 +1,4 @@
-import formDefinition from '../../../prompts/tab-builder/form.json';
+import formDefinition from './form.json';
 
 export const FIELD_TYPES = [
   'checkbox',
