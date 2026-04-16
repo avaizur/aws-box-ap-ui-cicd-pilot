@@ -1,0 +1,71 @@
+[
+  {
+    "tab": "initiative",
+    "fields": [
+      { "name": "description", "type": "textfield", "required": false, "readonly": false },
+      { "status": "description", "type": "dropdown", "required": false, "readonly": false, "choices": ["Created", "Submitted", "Milestone 1", "Milestone 2", "Milestone 3"] }
+    ]
+  },
+  {
+    "tab": "submissionSummary",
+    "fields": [
+      { "name": "submitterName", "type": "textfield", "required": false, "readonly": false },
+      { "name": "submitterContact", "type": "textfield", "required": false, "readonly": false },
+      { "name": "dateSubmitted", "type": "date", "required": false, "readonly": false },
+      { "name": "leadPartner", "type": "textfield", "required": false, "readonly": false },
+      { "name": "supportingPartners", "type": "textfield", "required": false, "readonly": false },
+      { "name": "customerUseCase", "type": "textfield", "required": false, "readonly": false },
+      { "name": "awsServices", "type": "textfield", "required": false, "readonly": false },
+      { "name": "expectedLaunchDate", "type": "date", "required": false, "readonly": false },
+      { "name": "publicSector", "type": "checkbox", "required": false, "readonly": false },
+      { "name": "businessOutcomes", "type": "checkbox", "required": false, "readonly": false },
+      { "name": "targetIndustry", "type": "textfield", "required": false, "readonly": false },
+      { "name": "targetPersona", "type": "textfield", "required": false, "readonly": false }
+    ]
+  },
+  {
+    "tab": "partnershipOverview",
+    "fields": [
+      { "name": "partnerName", "type": "textfield", "required": false, "readonly": false },
+      { "name": "sfdcLink", "type": "textfield", "required": false, "readonly": false },
+      { "name": "apnSfdcLink", "type": "textfield", "required": false, "readonly": false },
+      { "name": "partnerTier", "type": "textfield", "required": false, "readonly": false },
+      { "name": "partnerSince", "type": "date", "required": false, "readonly": false },
+      { "name": "businessPlanOwners", "type": "textfield", "required": false, "readonly": false },
+      { "name": "apnPrograms", "type": "textfield", "required": false, "readonly": false },
+      { "name": "officeLocations", "type": "textfield", "required": false, "readonly": false },
+      { "name": "keyFocusVerticals", "type": "textfield", "required": false, "readonly": false },
+      { "name": "competencies", "type": "textfield", "required": false, "readonly": false }
+    ]
+  },
+  {
+    "tab": "solutionOverview",
+    "fields": [
+      { "name": "executiveSummary", "type": "textfield", "required": false, "readonly": false },
+      { "name": "description", "type": "textfield", "required": false, "readonly": false },
+      { "name": "technology", "type": "textfield", "required": false, "readonly": false },
+      { "name": "marketFit", "type": "textfield", "required": false, "readonly": false },
+      { "name": "marketingStrategy", "type": "textfield", "required": false, "readonly": false },
+      { "name": "teamStructure", "type": "textfield", "required": false, "readonly": false },
+      { "name": "schedule", "type": "textfield", "required": false, "readonly": false },
+      { "name": "financials", "type": "textfield", "required": false, "readonly": false },
+      { "name": "architecture", "type": "textfield", "required": false, "readonly": false },
+      { "name": "customerTargets", "type": "textfield", "required": false, "readonly": false },
+      { "name": "findings", "type": "textfield", "required": false, "readonly": false }
+    ]
+  },
+  {
+    "tab": "solutionTeamStructure",
+    "fields": [
+      { "name": "supportModel", "type": "textfield", "required": false, "readonly": false },
+      { "name": "opportunityGeneration", "type": "textfield", "required": false, "readonly": false },
+      { "name": "commercialAgreement", "type": "textfield", "required": false, "readonly": false }
+    ]
+  },
+  {
+    "tab": "awsFeedback",
+    "fields": [
+      { "name": "awsFeedback", "type": "textfield", "required": false, "readonly": false }
+    ]
+  }
+]
