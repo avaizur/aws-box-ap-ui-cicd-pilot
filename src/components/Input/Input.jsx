@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './Input.module.scss';
 
 export default function Input({
+  id,
   label,
   type = 'text',
   value,
@@ -17,12 +18,13 @@ export default function Input({
   return (
     <div className={`${styles.inputWrapper} ${className}`}>
       {label && (
-        <label className={styles.label}>
+        <label htmlFor={id} className={styles.label}>
           {label}
           {required && <span className={styles.required}>*</span>}
         </label>
       )}
       <input
+        id={id}
         type={type}
         value={value}
         onChange={onChange}
