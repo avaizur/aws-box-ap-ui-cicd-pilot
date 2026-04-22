@@ -26,15 +26,20 @@ export default function LoginPage() {
     } else {
       setError(result.error || 'Login failed. Please check your credentials.');
     }
-    
+
     setLoading(false);
   };
 
   return (
     <div className={styles.loginContainer}>
-      <Card title="Login">
-        <form onSubmit={handleSubmit} className={styles.form}>
+      <Card title={<h1>Login</h1>}>
+        <form
+          onSubmit={handleSubmit}
+          className={styles.form}
+          aria-label="login form"
+        >
           <Input
+            id="email"
             label="Email"
             type="email"
             value={email}
@@ -42,7 +47,9 @@ export default function LoginPage() {
             required
             error={error && !email ? 'Email is required' : ''}
           />
+
           <Input
+            id="password"
             label="Password"
             type="password"
             value={password}
@@ -50,10 +57,17 @@ export default function LoginPage() {
             required
             error={error && !password ? 'Password is required' : ''}
           />
-          {error && <div className={styles.errorMessage}>{error}</div>}
+
+          {error && (
+            <div className={styles.errorMessage} role="alert">
+              {error}
+            </div>
+          )}
+
           <Button type="submit" disabled={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </Button>
+
           <div className={styles.links}>
             <Link to="/create-account">Create Account</Link>
             <Link to="/forgot-password">Forgot Password</Link>
