@@ -1,0 +1,11 @@
+{
+  "name": "aws-box-backend-pilot",
+  "version": "1.0.0",
+  "description": "Isolated serverless backend pilot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "author": "",
+  "license": "ISC"
+}

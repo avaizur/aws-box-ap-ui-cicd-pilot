@@ -1,0 +1,54 @@
+name: Jenkins CI/CD Pilot Trigger
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-frontend:
+    name: Frontend Build Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install Frontend Dependencies
+        run: npm ci
+        
+      - name: Build Frontend
+        run: npm run build
+
+  validate-backend:
+    name: Backend Pilot Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install Backend Dependencies
+        working-directory: ./backend-pilot
+        run: npm install
+
+  trigger-jenkins:
+    name: Trigger Jenkins Pipeline
+    needs: [validate-frontend, validate-backend]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Trigger Jenkins Hook
+        run: |
+          # Uses secrets for URL and Token to maintain portability and security
+          curl -X POST "${{ secrets.JENKINS_URL }}/generic-webhook-trigger/invoke?token=${{ secrets.TRIGGER_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"ref": "${{ github.ref }}", "repo": "${{ github.repository }}", "sha": "${{ github.sha }}"}'
