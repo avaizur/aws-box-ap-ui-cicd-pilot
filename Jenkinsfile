@@ -36,7 +36,11 @@ pipeline {
                 dir('backend-pilot') {
                     sh '''
                         npm install
-                        zip -r function.zip index.js package.json node_modules
+                        if [ -d "node_modules" ]; then
+                            zip -r function.zip index.js package.json node_modules
+                        else
+                            zip -r function.zip index.js package.json
+                        fi
                     '''
                 }
             }
