@@ -33,3 +33,9 @@ npm-debug.log*
 
 
 
+node_modules/
+dist/
+cookie.txt
+ngrok_output.log
+infrastructure/.terraform/
+infrastructure/.terraform.lock.hcl
