@@ -34,7 +34,7 @@ pipeline {
             }
         }
 
-        stage('Infrastructure Provisioning') {
+        stage('Terraform Plan') {
             steps {
                 dir('infrastructure') {
                     script {
@@ -44,7 +44,32 @@ pipeline {
                             passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                             withEnv(["AWS_DEFAULT_REGION=${AWS_REGION}"]) {
                                 sh 'terraform init'
-                                sh "terraform apply -auto-approve -var='db_password=${DB_PASSWORD}' -var='project_name=${PROJECT_NAME}' -var='aws_region=${AWS_REGION}'"
+                                sh "terraform plan -out=tfplan -var='db_password=${DB_PASSWORD}' -var='project_name=${PROJECT_NAME}' -var='aws_region=${AWS_REGION}'"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Approval: Provision Infrastructure') {
+            steps {
+                script {
+                    input message: "Review the Terraform plan. Do you want to apply these changes?", ok: "Apply"
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                dir('infrastructure') {
+                    script {
+                        withCredentials([usernamePassword(
+                            credentialsId: "${AWS_CREDS_ID}",
+                            usernameVariable: 'AWS_ACCESS_KEY_ID',
+                            passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                            withEnv(["AWS_DEFAULT_REGION=${AWS_REGION}"]) {
+                                sh 'terraform apply -auto-approve tfplan'
 
                                 // Capture App Runner URL for Frontend build
                                 env.API_URL = sh(script: "terraform output -raw service_url", returnStdout: true).trim()
@@ -90,9 +115,42 @@ pipeline {
                         error "FAILURE: Backend responded with HTTP ${response}"
                     }
 
-                    // 2. Validate DB Connectivity (indirectly via a health endpoint or specific API)
-                    // Assuming /api/health or similar exists, or just checking if docs load (which usually requires DB check in Spring)
+                    // 2. Validate DB Connectivity
+                    echo "Checking application health/DB connection..."
+                    // Assuming /api/health or /api/actuator/health is exposed
+                    def healthResponse = sh(script: "curl -s -o /dev/null -w '%{http_code}' https://${env.API_URL}/api/actuator/health", returnStdout: true).trim()
+                    if (healthResponse == "200") {
+                        echo "SUCCESS: Application health (and DB connection) is UP."
+                    } else {
+                        echo "WARNING: /api/actuator/health returned ${healthResponse}. Check if actuator is enabled and DB is connected."
+                    }
+
                     echo "Smoke validation passed successfully!"
+                }
+            }
+        }
+
+        stage('Approval: Destroy Infrastructure') {
+            steps {
+                script {
+                    input message: "Validation complete. Do you want to destroy the temporary infrastructure?", ok: "Destroy"
+                }
+            }
+        }
+
+        stage('Terraform Destroy') {
+            steps {
+                dir('infrastructure') {
+                    script {
+                        withCredentials([usernamePassword(
+                            credentialsId: "${AWS_CREDS_ID}",
+                            usernameVariable: 'AWS_ACCESS_KEY_ID',
+                            passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                            withEnv(["AWS_DEFAULT_REGION=${AWS_REGION}"]) {
+                                sh "terraform destroy -auto-approve -var='db_password=${DB_PASSWORD}' -var='project_name=${PROJECT_NAME}' -var='aws_region=${AWS_REGION}'"
+                            }
+                        }
+                    }
                 }
             }
         }
