@@ -24,8 +24,15 @@ variable "db_username" {
 }
 
 variable "db_password" {
-  type      = string
-  sensitive = true
+  description = "Database password"
+  type        = string
+  sensitive   = true
+}
+
+variable "deploy_app_runner" {
+  description = "Whether to deploy the App Runner service (used to split deployment before image exists)"
+  type        = bool
+  default     = true
 }
 
 variable "app_runner_access_role_arn" {

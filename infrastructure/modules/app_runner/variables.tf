@@ -27,3 +27,8 @@ variable "env_vars" {
   type    = map(string)
   default = {}
 }
+
+variable "deploy_app_runner" {
+  type    = bool
+  default = true
+}

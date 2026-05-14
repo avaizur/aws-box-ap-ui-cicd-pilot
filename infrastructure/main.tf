@@ -19,8 +19,9 @@ module "app_runner" {
   vpc_id           = module.networking.vpc_id
   subnet_ids       = module.networking.private_subnets
   image_identifier = "${module.ecr.repository_url}:latest"
-  access_role_arn  = var.app_runner_access_role_arn
-  container_port   = "8080"
+  access_role_arn   = var.app_runner_access_role_arn
+  container_port    = "8080"
+  deploy_app_runner = var.deploy_app_runner
   env_vars = {
     "SPRING_DATASOURCE_URL"       = "jdbc:mysql://${module.rds.db_endpoint}/${var.db_name}?useSSL=false&serverTimezone=UTC"
     "SPRING_DATASOURCE_USERNAME"  = var.db_username
@@ -43,11 +44,11 @@ module "rds" {
 }
 
 output "service_url" {
-  value = "https://${module.app_runner.service_url}"
+  value = module.app_runner.service_url != "" ? "https://${module.app_runner.service_url}" : ""
 }
 
 output "smoke_test_url" {
-  value = "https://${module.app_runner.service_url}/api/v3/api-docs"
+  value = module.app_runner.service_url != "" ? "https://${module.app_runner.service_url}/api/v3/api-docs" : ""
 }
 
 output "rds_endpoint" {

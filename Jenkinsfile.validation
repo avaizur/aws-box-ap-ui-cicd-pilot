@@ -19,8 +19,7 @@ pipeline {
                             passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                             withEnv(["AWS_DEFAULT_REGION=${AWS_REGION}"]) {
                                 sh 'terraform init'
-                                def targets = "-target=module.networking -target=module.ecr -target=module.rds -target=aws_iam_role.app_runner_access_role -target=aws_iam_role_policy_attachment.app_runner_ecr_access"
-                                sh "terraform plan ${targets} -out=tfplan_base -var='db_password=${DB_PASSWORD}' -var='project_name=${PROJECT_NAME}' -var='aws_region=${AWS_REGION}'"
+                                sh "terraform plan -out=tfplan_base -var='db_password=${DB_PASSWORD}' -var='project_name=${PROJECT_NAME}' -var='aws_region=${AWS_REGION}' -var='deploy_app_runner=false'"
                             }
                         }
                     }
@@ -87,8 +86,9 @@ pipeline {
                             usernameVariable: 'AWS_ACCESS_KEY_ID',
                             passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                             withEnv(["AWS_DEFAULT_REGION=${AWS_REGION}"]) {
-                                // Now that the image exists, apply the rest of the infrastructure
-                                sh "terraform apply -auto-approve -var='db_password=${DB_PASSWORD}' -var='project_name=${PROJECT_NAME}' -var='aws_region=${AWS_REGION}'"
+                                // Now that the image exists, plan and apply the rest of the infrastructure
+                                sh "terraform plan -out=tfplan_apprunner -var='db_password=${DB_PASSWORD}' -var='project_name=${PROJECT_NAME}' -var='aws_region=${AWS_REGION}' -var='deploy_app_runner=true'"
+                                sh "terraform apply -auto-approve tfplan_apprunner"
 
                                 // Capture App Runner URL for Frontend build
                                 env.API_URL = sh(script: "terraform output -raw service_url", returnStdout: true).trim()
@@ -166,7 +166,7 @@ pipeline {
                             usernameVariable: 'AWS_ACCESS_KEY_ID',
                             passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                             withEnv(["AWS_DEFAULT_REGION=${AWS_REGION}"]) {
-                                sh "terraform destroy -auto-approve -var='db_password=${DB_PASSWORD}' -var='project_name=${PROJECT_NAME}' -var='aws_region=${AWS_REGION}'"
+                                sh "terraform destroy -auto-approve -var='db_password=${DB_PASSWORD}' -var='project_name=${PROJECT_NAME}' -var='aws_region=${AWS_REGION}' -var='deploy_app_runner=true'"
                             }
                         }
                     }
