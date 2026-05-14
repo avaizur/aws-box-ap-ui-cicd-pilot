@@ -9,31 +9,6 @@ pipeline {
     }
 
     stages {
-        stage('Backend Build & Push') {
-            steps {
-                dir('aws-box-ap-ui-work/aws-box-app-api') {
-                    script {
-                        withCredentials([usernamePassword(
-                            credentialsId: "${AWS_CREDS_ID}",
-                            usernameVariable: 'AWS_ACCESS_KEY_ID',
-                            passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                            withEnv(["AWS_DEFAULT_REGION=${AWS_REGION}"]) {
-                                // 1. Get ECR URL from Terraform (if already exist) or define it
-                                def repoUrl = sh(script: "aws ecr describe-repositories --repository-names ${PROJECT_NAME}-repo --query 'repositories[0].repositoryUri' --output text", returnStdout: true).trim()
-
-                                // 2. Docker Login
-                                sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${repoUrl}"
-
-                                // 3. Build & Push
-                                sh "docker build -t ${repoUrl}:latest ."
-                                sh "docker push ${repoUrl}:latest"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         stage('Terraform Plan') {
             steps {
                 dir('infrastructure') {
@@ -73,6 +48,29 @@ pipeline {
 
                                 // Capture App Runner URL for Frontend build
                                 env.API_URL = sh(script: "terraform output -raw service_url", returnStdout: true).trim()
+                                env.ECR_URL = sh(script: "terraform output -raw ecr_repository_url", returnStdout: true).trim()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Backend Build & Push') {
+            steps {
+                dir('aws-box-ap-ui-work/aws-box-app-api') {
+                    script {
+                        withCredentials([usernamePassword(
+                            credentialsId: "${AWS_CREDS_ID}",
+                            usernameVariable: 'AWS_ACCESS_KEY_ID',
+                            passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                            withEnv(["AWS_DEFAULT_REGION=${AWS_REGION}"]) {
+                                // 1. Docker Login
+                                sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${env.ECR_URL}"
+
+                                // 2. Build & Push
+                                sh "docker build -t ${env.ECR_URL}:latest ."
+                                sh "docker push ${env.ECR_URL}:latest"
                             }
                         }
                     }

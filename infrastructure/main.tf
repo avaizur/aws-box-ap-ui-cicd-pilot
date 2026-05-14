@@ -54,6 +54,10 @@ output "rds_endpoint" {
   value = module.rds.db_endpoint
 }
 
+output "ecr_repository_url" {
+  value = module.ecr.repository_url
+}
+
 # IAM Role for App Runner to pull from ECR
 resource "aws_iam_role" "app_runner_access_role" {
   name = "${var.project_name}-app-runner-access-role"
