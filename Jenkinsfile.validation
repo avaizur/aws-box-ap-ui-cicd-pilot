@@ -9,6 +9,30 @@ pipeline {
     }
 
     stages {
+        stage('Approval: Clean Orphaned Resources') {
+            steps {
+                script {
+                    input message: "Do you want to run the automated cleanup script to remove orphaned AWS resources from previous failed runs?", ok: "Clean Up"
+                }
+            }
+        }
+
+        stage('Cleanup Orphaned Resources') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(
+                        credentialsId: "${AWS_CREDS_ID}",
+                        usernameVariable: 'AWS_ACCESS_KEY_ID',
+                        passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                        withEnv(["AWS_DEFAULT_REGION=${AWS_REGION}"]) {
+                            sh "chmod +x scripts/orphan_cleanup.sh"
+                            sh "./scripts/orphan_cleanup.sh"
+                        }
+                    }
+                }
+            }
+        }
+
         stage('Terraform Plan (Base Infrastructure)') {
             steps {
                 dir('infrastructure') {
