@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         AWS_CREDS_ID = 'aws-pilot-credentials'
-        AWS_REGION = 'eu-west-1'
+        AWS_REGION = 'eu-west-2'
         PROJECT_NAME = 'aws-box-ap-val'
         DB_PASSWORD = credentials('rds-db-password')
     }
