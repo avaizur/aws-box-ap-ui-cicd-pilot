@@ -81,7 +81,7 @@ pipeline {
 
         stage('Backend Build & Push') {
             steps {
-                dir('aws-box-ap-ui-work/aws-box-app-api') {
+                dir('backend-pilot') {
                     script {
                         withCredentials([usernamePassword(
                             credentialsId: "${AWS_CREDS_ID}",
@@ -125,7 +125,7 @@ pipeline {
 
         stage('Frontend Build & Deploy') {
             steps {
-                dir('aws-box-app-ui') {
+                dir('.') {
                     sh "echo 'VITE_API_URL=https://${env.API_URL}/api' > .env.production"
                     sh 'npm install'
                     sh 'npm run build'
